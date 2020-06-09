@@ -27,4 +27,6 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-slf4j"     % akkaVersion,
   "com.typesafe.akka" %% "akka-testkit"   % akkaVersion,
   "org.typelevel"     %% "cats-core"      % catsVersion,
+   "org.scala-graph"  %% "graph-core"     % "1.13.2"
+
 )
