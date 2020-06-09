@@ -1,5 +1,4 @@
 package actors
-
 import akka.actor.{Actor, ActorRef}
 import com.teamg.taxi.{Disposition, ReportLocation}
 

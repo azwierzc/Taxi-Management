@@ -1,7 +1,7 @@
 package actors
 
 import akka.actor.{Actor, PoisonPill}
-import com.teamg.taxi.Ping
+import com.teamg.taxi.NewOrder
 import com.teamg.taxi.Order
 import com.teamg.taxi.ReportLocation
 
@@ -14,7 +14,7 @@ class OrderAllocationManagerActor extends Actor {
 
       if (countDown > 0) {
         countDown -= 1
-        sender() ! Ping
+        sender() ! NewOrder
       } else {
         sender() ! PoisonPill
         self ! PoisonPill
