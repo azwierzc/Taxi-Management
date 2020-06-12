@@ -1,5 +1,9 @@
 package com.teamg.taxi.core.model
 
+import java.time.Instant
+
+import com.teamg.taxi.core.actors.resource.TaxiPath
+
 sealed trait CustomerType
 
 object CustomerType {
@@ -26,9 +30,9 @@ object TaxiState {
 
   case object Free extends TaxiState
 
-  case object Occupied extends TaxiState
+  case class Occupied(orderId: String, taxiPath: TaxiPath) extends TaxiState
 
-  case object OnWayToCustomer extends TaxiState
+  case class OnWayToCustomer(orderId: String, taxiPath: TaxiPath) extends TaxiState
 
 }
 
@@ -46,7 +50,7 @@ sealed trait OrderState
 
 object OrderState {
 
-  case class Pending(order: Order, createTime: Long) extends OrderState
+  case class Pending(order: Order, createTime: Instant) extends OrderState
 
   case class OnWayToCustomer(order: Order, taxiId: String) extends OrderState
 
@@ -58,7 +62,18 @@ case class Order(id: String,
                  from: String,
                  target: String,
                  customerType: CustomerType,
-                 orderType: OrderType)
+                 orderType: OrderType,
+                 timeStamp: Instant)
 
 case class Taxi(id: String,
                 taxiType: TaxiType)
+
+sealed trait TaxiPathState
+
+case object TaxiPathState {
+
+  case object InProgress extends TaxiPathState
+
+  case object Finished extends TaxiPathState
+
+}
