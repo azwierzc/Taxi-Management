@@ -17,12 +17,12 @@ import com.teamg.taxi.core.service.OrderService
 import scala.concurrent.duration._
 import scala.util.{Failure, Success}
 
-class TaxiSystemActor(taxiIds: List[String]) extends Actor with ActorLogging with Timers {
+class TaxiSystemActor(taxiIdToNode: Map[String, Int]) extends Actor with ActorLogging with Timers {
 
   implicit val clock: Clock = Clock.system(ZoneId.of("Europe/Warsaw"))
   private val scale = 20
   private val orderAllocationManager = context.actorOf(Props(classOf[OrderAllocationManagerActor], clock))
-  private lazy val taxiActors = createTaxiActors(taxiIds)
+  private lazy val taxiActors = createTaxiActors(taxiIdToNode)
   private val cityMap = MapProvider.default
 
   private implicit val system: ActorSystem = ActorSystem("TaxiSystemManagement")
@@ -52,9 +52,9 @@ class TaxiSystemActor(taxiIds: List[String]) extends Actor with ActorLogging wit
 
   }
 
-  private def createTaxiActors(taxiIds: List[String]): Map[String, ActorRef] = {
-    taxiIds.map(id =>
-      id -> context.actorOf(Props(classOf[ResourceActor], clock, Taxi(id, TaxiType.Car), orderAllocationManager, cityMap.randomNode()))
+  private def createTaxiActors(taxiIdToNode: Map[String, Int]): Map[String, ActorRef] = {
+    taxiIdToNode.map(p =>
+      p._1 -> context.actorOf(Props(classOf[ResourceActor], clock, Taxi(p._1, TaxiType.Car), orderAllocationManager, cityMap.getNode(p._2)))
     ).toMap
   }
 

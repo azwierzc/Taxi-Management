@@ -1,5 +1,4 @@
 package com.teamg.taxi.gui
-
 import com.teamg.taxi.core.api.{Location, Taxi, TaxiState}
 import com.teamg.taxi.core.map.MapProvider
 import scalafx.animation.AnimationTimer
@@ -25,6 +24,8 @@ object GUI extends JFXApp {
   val occupiedStateColor = Red
   val onWayToCustomerStateColor = DarkMagenta
   private val cityMap = MapProvider.default
+
+
 
   stage = new PrimaryStage {
     title = "Taxi System"
@@ -144,5 +145,6 @@ object GUI extends JFXApp {
       }
     }
   }
+
 
 }

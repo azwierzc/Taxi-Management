@@ -17,7 +17,12 @@ class PureActorExample {
   implicit val executionContext = system.dispatcher
 
   val taxiLabels = List("Taxi1", "Taxi2", "Taxi3", "Taxi4", "Taxi5", "Taxi6", "Taxi7", "Taxi8", "Taxi9", "Taxi10")
-  private val taxiSystemActor = system.actorOf(Props(classOf[TaxiSystemActor], taxiLabels), "manager")
+  val taxiNodesId = List(1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+
+  val taxiLabelsToNodesId = (taxiLabels zip taxiNodesId).toMap
+
+
+  private val taxiSystemActor = system.actorOf(Props(classOf[TaxiSystemActor], taxiLabelsToNodesId), "manager")
   taxiSystemActor ! StartM
 
   val orderSender = new OrderSender("http://localhost:8080/order")

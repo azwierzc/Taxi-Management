@@ -24,7 +24,7 @@ class CityMap[ID](graph: Graph[Node[ID], WLUnDiEdge]) {
 
   def getCityMapElements: CityMapElements[ID] = {
     val nodes = graph.nodes.map(n => Node(n.id, n.location)).toList
-    val edges =  graph.edges.map(e => Edge(Label.empty, e.head.value, e.to.value, e.weight)).toList
+    val edges = graph.edges.map(e => Edge(Label.empty, e.head.value, e.to.value, e.weight)).toList
     CityMapElements(nodes, edges)
   }
 
@@ -32,6 +32,12 @@ class CityMap[ID](graph: Graph[Node[ID], WLUnDiEdge]) {
     val nodes = graph.nodes.map(_.value).toSeq
     getRandomElement(nodes, new Random())
   }
+
+  def getNode(id: Int): Node[ID] = {
+    val nodes = graph.nodes.map(_.value).toSeq
+    nodes(id)
+  }
+
 
   private def edgesOnPath(fromId: ID, toId: ID): Option[List[Edge[ID]]] = {
     shortestPath(fromId, toId)
