@@ -26,9 +26,9 @@ class OrderAllocationManagerActor(clock: Clock) extends Actor {
   override def receive: Receive = {
     case ArrivedOrderM(order: Order) =>
       getCostFromTaxis(order, taxiActors, taxiStates)
-      calculateCostFunction(order, taxiCost)
       taxiStates = createInitialTaxiStates(taxiActors)
       taxiCost = createInitialTaxiCost(taxiActors)
+      calculateCostFunction(order, taxiCost, taxiStates)
       addOrderActor(order)
       orders += order.id -> order
       for {
@@ -109,7 +109,7 @@ class OrderAllocationManagerActor(clock: Clock) extends Actor {
       .map(p => taxiActors(p._1) ! CalculateCostM(order))
   }
 
-  private def calculateCostFunction(order: Order, taxiCost: Map[String, Option[Double]]) = {
+  private def calculateCostFunction(order: Order, taxiCost: Map[String, Option[Double]], taxiStates: Map[String, TaxiPureState]) = {
     println("Calculating cost function")
   }
 
