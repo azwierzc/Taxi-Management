@@ -33,9 +33,9 @@ class CityMap[ID](graph: Graph[Node[ID], WLUnDiEdge]) {
     getRandomElement(nodes, new Random())
   }
 
-  def getNode(id: Int): Node[ID] = {
+  def getNode(id: ID): Node[ID] = {
     val nodes = graph.nodes.map(_.value).toSeq
-    nodes(id)
+    nodes.filter(p => p.id === id).head
   }
 
 

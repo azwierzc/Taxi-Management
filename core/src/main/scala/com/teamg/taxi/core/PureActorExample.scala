@@ -17,7 +17,7 @@ class PureActorExample {
   implicit val executionContext = system.dispatcher
 
   val taxiLabels = List("Taxi1", "Taxi2", "Taxi3", "Taxi4", "Taxi5", "Taxi6", "Taxi7", "Taxi8", "Taxi9", "Taxi10")
-  val taxiNodesId = List(1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+  val taxiNodesId = List("A", "B", "C", "D", "E", "F", "G", "H", "I", "J")
 
   val taxiLabelsToNodesId = (taxiLabels zip taxiNodesId).toMap
 
