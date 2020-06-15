@@ -38,9 +38,8 @@ class OrderAllocationManagerActor(clock: Clock) extends Actor {
       taxiCost = createInitialTaxiCost(taxiActors)
 
     case TaxiCostResponse(taxi, cost) =>
-      println(s"Taxi ${taxi.id} cost: ${cost}")
+      println(s"${taxi.id} cost: ${cost}")
       taxiCost = taxiCost.updated(taxi.id, cost)
-      println(taxiCost)
 
     case response: TaxiUpdateResponse =>
       response match {
