@@ -9,10 +9,11 @@ import com.teamg.taxi.core.actors.OrderAllocationManagerActor.messages._
 import com.teamg.taxi.core.actors.resource.ResourceActor.messages.{CalculateCostM, NewOrderRequestM}
 import com.teamg.taxi.core.model.{Order, Taxi, TaxiPureState}
 import com.teamg.taxi.core.utils.Utils
-
 import scala.util.Random
 
+
 class OrderAllocationManagerActor(clock: Clock) extends Actor {
+
 
   private var taxiActors = Map.empty[String, ActorRef]
   private var taxiStates = Map.empty[String, TaxiPureState]
