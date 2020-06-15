@@ -26,7 +26,6 @@ class OrderAllocationManagerActor(clock: Clock) extends Actor {
   override def receive: Receive = {
     case ArrivedOrderM(order: Order) =>
       getCostFromTaxis(order, taxiActors, taxiStates)
-      calculateCostFunction(order, taxiCost)
       taxiStates = createInitialTaxiStates(taxiActors)
       taxiCost = createInitialTaxiCost(taxiActors)
       calculateCostFunction(order, taxiCost, taxiStates)
