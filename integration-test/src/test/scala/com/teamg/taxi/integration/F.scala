@@ -2,7 +2,7 @@ package com.teamg.taxi.integration
 
 import com.teamg.taxi.core.Main.TaxiData
 import com.teamg.taxi.core.SimulationConfig
-import com.teamg.taxi.core.api.Taxi
+import com.teamg.taxi.core.model.Taxi
 import com.teamg.taxi.core.map.{CityMap, MapProvider}
 import com.teamg.taxi.core.model.TaxiType.{Car, Van}
 
