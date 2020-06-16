@@ -8,5 +8,5 @@ object AppTestOneTaxiTwoOrders extends BaseApp {
   startGUI
 
   sendOrderRequest(OrderRequest("T", "B", "normal", "normal", "abc"))
-  //sendOrderRequest(OrderRequest("A", "C", "vip", "normal", "abc"))
+  sendOrderRequest(OrderRequest("A", "C", "vip", "normal", "abc"))
 }

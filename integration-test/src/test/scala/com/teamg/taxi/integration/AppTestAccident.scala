@@ -9,8 +9,7 @@ object AppTestAccident extends BaseApp {
   override def simulationConfig = DefaultSimulationConfig
 
   startGUI
-
-  sendOrderRequest(OrderRequest("T", "B", "normal", "normal", "abc"))
-  sendAccidentRequest(AccidentRequest("A", "C", 10.0))
+  sendAccidentRequest(AccidentRequest("P", "O", 300.0))
+  sendOrderRequest(OrderRequest("P", "N", "normal", "normal", "abc"))
 
 }
